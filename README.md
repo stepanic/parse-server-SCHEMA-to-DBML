@@ -3,9 +3,13 @@ Convert ParseServer _SCHEMA Mongo collection data to DBML (SQL@dbdiagram.io) to 
 
 ## ParseServer
 
-https://github.com/parse-community/parse-server
-https://parseplatform.org/
+- https://github.com/parse-community/parse-server
+- https://parseplatform.org
 
 ## DBML
 
-https://www.dbml.org/home/
+- https://www.dbml.org
+
+### dbdiagram
+
+- https://dbdiagram.io/
