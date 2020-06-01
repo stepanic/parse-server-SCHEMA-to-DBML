@@ -14,6 +14,12 @@ Convert ParseServer _SCHEMA Mongo collection data to DBML (SQL by dbdiagram.io) 
 
 - https://dbdiagram.io
 
+# Requirements
+
+Install `Node.js`, recommened `>= v12.x` with `NVM`
+
+- https://github.com/nvm-sh/nvm
+
 # Steps
 
 ## 0. Clone this repo
