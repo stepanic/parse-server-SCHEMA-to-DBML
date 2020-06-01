@@ -4,7 +4,7 @@
   "description": "Convert ParseServer _SCHEMA Mongo collection data to DBML (SQL by dbdiagram.io) to visualise relations between Parse classes",
   "main": "index.js",
   "bin": {
-    "parseSchema2dbml": "./index.js"
+    "parseSchema2dbml": "./bin/parseSchema2dbml.js"
   },
   "scripts": {
     "test": "npm test"
