@@ -27,3 +27,5 @@ git clone git@github.com:stepanic/parse-server-SCHEMA-to-DBML.git
 ```bash
 mongoexport --uri="${MONGO_URI}" --collection _SCHEMA --jsonArray --out _SCHEMA.json
 ```
+
+**NOTE:** do not worry about DB data leak, `_SCHEMA.json` is part of `.gitignore` 😎
