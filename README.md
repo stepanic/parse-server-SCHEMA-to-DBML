@@ -12,4 +12,4 @@ Convert ParseServer _SCHEMA Mongo collection data to DBML (SQL@dbdiagram.io) to 
 
 ### dbdiagram
 
-- https://dbdiagram.io/
+- https://dbdiagram.io
