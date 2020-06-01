@@ -1,10 +1,10 @@
 {
   "name": "parse-server-schema-to-dbml",
-  "version": "0.1.3",
+  "version": "0.1.6",
   "description": "Convert ParseServer _SCHEMA Mongo collection data to DBML (SQL by dbdiagram.io) to visualise relations between Parse classes",
   "main": "index.js",
   "bin": {
-    "parseSchema2dbml": "./parseSchema2dbml.js"
+    "parseServerSchema2dbml": "./bin/parseServerSchema2dbml.js"
   },
   "scripts": {
     "test": "npm test"

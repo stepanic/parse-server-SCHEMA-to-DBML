@@ -132,7 +132,7 @@ ${indexes.join('\n')}
 }
 
 // CLI
-program.version('0.1.2');
+program.version('0.1.6');
 
 program
     .requiredOption('-i --input <input>', 'path to the _SCHEMA.json')
