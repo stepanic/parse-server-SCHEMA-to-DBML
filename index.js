@@ -1,5 +1,4 @@
 const { program } = require('commander');
-
 const fs = require('fs');
 
 // Material pallete 700 or 800 or 900 for white text
@@ -133,7 +132,7 @@ ${indexes.join('\n')}
 }
 
 // CLI
-program.version('0.1.0');
+program.version('0.1.1');
 
 program
     .requiredOption('-i --input <input>', 'path to the _SCHEMA.json')
