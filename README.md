@@ -20,13 +20,13 @@ Install `Node.js`, recommened `>= v12.x` with `NVM`
 
 - https://github.com/nvm-sh/nvm
 
-# Steps
-
-## 0. Clone this repo
+# Installation
 
 ```bash
-git clone git@github.com:stepanic/parse-server-SCHEMA-to-DBML.git
+npm install -g parse-server-schema-to-dbml
 ```
+
+# Steps
 
 ## 1. Export data from Mongo collection to the JSON
 
@@ -35,3 +35,23 @@ mongoexport --uri="${MONGO_URI}" --collection _SCHEMA --jsonArray --out _SCHEMA.
 ```
 
 **NOTE:** do not worry about DB data leak, `_SCHEMA.json` is part of `.gitignore` 😎
+
+## 2. Convert data from `_SCHEMA.json` to the DBML `_SCHEMA.dbml`
+
+```bash
+parseServerSchema2dbml -i _SCHEMA.json -o _SCHEMA.dbml
+```
+
+### Short call
+
+```bash
+parseServerSchema2dbml
+```
+
+#### NOTE
+
+Default values are `./_SCHEMA.json` for `-i` (`--input`) and `./_SCHEMA.dbml` for `-o` (`--output`) 
+
+## 3. Import data to dbdiagram.io
+
+Paste everything from `_SCHEMA.dbml` or other file defined at `--output` option to the some empty or expisting diagram at the dbdiagram.io
