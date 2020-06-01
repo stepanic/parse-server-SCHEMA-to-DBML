@@ -1,2 +1,3 @@
-_SCHEMA.json
-_SCHEMA.dbml
+node_modules
+*.json
+*.dbml

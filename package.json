@@ -1,6 +1,6 @@
 {
   "name": "parse-server-schema-to-dbml",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Convert ParseServer _SCHEMA Mongo collection data to DBML (SQL by dbdiagram.io) to visualise relations between Parse classes",
   "main": "index.js",
   "scripts": {
@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/stepanic/parse-server-SCHEMA-to-DBML/issues"
   },
-  "homepage": "https://github.com/stepanic/parse-server-SCHEMA-to-DBML#readme"
+  "homepage": "https://github.com/stepanic/parse-server-SCHEMA-to-DBML#readme",
+  "dependencies": {
+    "commander": "^5.1.0"
+  }
 }
