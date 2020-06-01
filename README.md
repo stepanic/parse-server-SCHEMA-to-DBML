@@ -54,4 +54,4 @@ Default values are `./_SCHEMA.json` for `-i` (`--input`) and `./_SCHEMA.dbml` fo
 
 ## 3. Import data to dbdiagram.io
 
-Paste everything from `_SCHEMA.dbml` or other file defined at `--output` option to the some empty or expisting diagram at the dbdiagram.io
+Paste everything from `_SCHEMA.dbml` or other file defined at `--output` option to the some empty or existing diagram at the dbdiagram.io
