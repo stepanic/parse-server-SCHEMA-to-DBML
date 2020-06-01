@@ -1,2 +1,2 @@
-# parse-server-SCHEMA-to-dbdiagram-SQL
-Convert ParseServer _SCHEMA Mongo collection data to dbdiagram.io SQL to visualise relation between Parse classes
+# parse-server-SCHEMA-to-DBML
+Convert ParseServer _SCHEMA Mongo collection data to DBML (SQL@dbdiagram.io) to visualise relations between Parse classes
