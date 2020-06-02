@@ -16,7 +16,7 @@ Convert ParseServer _SCHEMA Mongo collection data to DBML (SQL by dbdiagram.io) 
 
 # Requirements
 
-Install `Node.js`, recommened `>= v12.x` with `NVM`
+Install `Node.js`, recommended `>= v12.x` with `NVM`
 
 - https://github.com/nvm-sh/nvm
 
@@ -26,9 +26,9 @@ Install `Node.js`, recommened `>= v12.x` with `NVM`
 npm install -g parse-server-schema-to-dbml
 ```
 
-# Steps
+# Usage
 
-## 1. Export data from Mongo collection to the JSON
+## 1. Export data from Mongo collection to the JSON file as array of documents
 
 ```bash
 mongoexport --uri="${MONGO_URI}" --collection _SCHEMA --jsonArray --out _SCHEMA.json
@@ -42,6 +42,8 @@ mongoexport --uri="${MONGO_URI}" --collection _SCHEMA --jsonArray --out _SCHEMA.
 parseServerSchema2dbml -i _SCHEMA.json -o _SCHEMA.dbml
 ```
 
+**NOTE:** do not worry about DB data leak, `_SCHEMA.dbml` is also part of `.gitignore` 😎
+
 ### Short call
 
 ```bash
@@ -50,8 +52,8 @@ parseServerSchema2dbml
 
 #### NOTE
 
-Default values are `./_SCHEMA.json` for `-i` (`--input`) and `./_SCHEMA.dbml` for `-o` (`--output`) 
+Default values are `./_SCHEMA.json` for the `-i` (`--input`) and `./_SCHEMA.dbml` for the `-o` (`--output`) options.
 
 ## 3. Import data to dbdiagram.io
 
-Paste everything from `_SCHEMA.dbml` or other file defined at `--output` option to the some empty or existing diagram at the dbdiagram.io
+Paste everything from `_SCHEMA.dbml` or other file defined at `--output` option to the empty or some existing diagram at the dbdiagram.io
