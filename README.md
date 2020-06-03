@@ -1,5 +1,5 @@
 # parse-server-SCHEMA-to-DBML
-Convert ParseServer classes as documents from MongoDB collection `_SCHEMA` to DBML (SQL by dbdiagram.io) tables to visualize relations between Parse classes.
+Convert [ParseServer](https://github.com/parse-community/parse-server) classes as documents from MongoDB collection `_SCHEMA` to [DBML](https://www.dbml.org) (SQL by dbdiagram.io) tables to visualize relations between Parse classes.
 
 ## ParseServer
 
@@ -13,6 +13,10 @@ Convert ParseServer classes as documents from MongoDB collection `_SCHEMA` to DB
 ### dbdiagram
 
 - https://dbdiagram.io
+
+### dbdocs
+
+- http://dbdocs.io
 
 # Requirements
 
