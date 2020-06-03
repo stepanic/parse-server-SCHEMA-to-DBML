@@ -1,5 +1,5 @@
 # parse-server-SCHEMA-to-DBML
-Convert ParseServer _SCHEMA Mongo collection data to DBML (SQL by dbdiagram.io) to visualize relations between Parse classes
+Convert ParseServer classes as documents from MongoDB collection `\_SCHEMA` to DBML (SQL by dbdiagram.io) tables to visualize relations between Parse classes.
 
 ## ParseServer
 
