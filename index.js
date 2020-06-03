@@ -48,7 +48,7 @@ const convert = (schemaJSON, schemaDBML) => {
 
         const className = parseClass._id;
 
-        // console.log(className);
+        console.log(className);
 
         const keys = Object.keys(parseClass);
 
@@ -60,10 +60,16 @@ const convert = (schemaJSON, schemaDBML) => {
             }
         });
 
+        const metadata = parseClass['_metadata'];
+        // console.log(metadata);
+        const fieldsOptions = metadata['fields_options'] || {};
+
         const color = colorByIndex(classIndex);
 
         let TABLE = `Table ${className} [headercolor: ${color}] {
     objectId string
+    createdAt date [default: \`now()\`, note: "created time"]
+    updatedAt date [default: \`now()\`, note: "updated time"]
 `;
 
         const scalarFields = [];
@@ -73,41 +79,61 @@ const convert = (schemaJSON, schemaDBML) => {
         const indexes = [];
         indexes.push(`      objectId [pk]`);
 
+        const dbmlOptions = {};
+
         fields.forEach(fieldName => {
             const fieldType = parseClass[fieldName];
             // console.log(fieldName, fieldType);
 
-            if (fieldType.startsWith('*')) {
+            const fieldOptions = fieldsOptions[fieldName] || {};
+            // console.log(fieldName, fieldOptions);
+
+            dbmlOptions[fieldName] = [];
+
+            if (fieldOptions.defaultValue !== undefined) {
+                dbmlOptions[fieldName].push(`default: \`${JSON.stringify(fieldOptions.defaultValue)}\``)
+            }
+
+            const notes = [];
+            if (fieldOptions.required) {
+                notes.push('required');
+            }
+
+            if (fieldType.startsWith('*')) { // Pointer
                 pointerFields.push(fieldName);
-            } else if (fieldType.startsWith('relation<')) {
+                const pointerClass = fieldType.substring(1); // Extract `*${pointerClass}`
+                dbmlOptions[fieldName].push(`ref: > ${pointerClass}.objectId`)
+                notes.push('MANY-to-ONE');
+            } else if (fieldType.startsWith('relation<')) { // Relation
                 relationFields.push(fieldName);
-            } else {
+                const relationClass = fieldType.substring(9, fieldType.length - 1); // Extract `relation<${relationClass}>`
+                dbmlOptions[fieldName].push(`ref: - ${relationClass}.objectId`)
+                notes.push('MANY-to-MANY');
+            } else { // others
                 scalarFields.push(fieldName);
             }
+
+            dbmlOptions[fieldName].push(`note: '${notes.join(', ')}'`)
+
+            const dbmlOptionsAsString = dbmlOptions[fieldName].length ? `[${dbmlOptions[fieldName].join(', ')}]` : '';
+            dbmlOptions[fieldName] = dbmlOptionsAsString;
         });
+
 
         scalarFields.forEach(fieldName => {
             const fieldType = parseClass[fieldName];
-            TABLE += `    ${fieldName} ${fieldType}
+            TABLE += `    ${fieldName} ${fieldType} ${dbmlOptions[fieldName]}
 `;
         });
 
         pointerFields.forEach(fieldName => {
-            const fieldType = parseClass[fieldName];
-            const pointerClass = fieldType.substring(1); // Extract `*${pointerClass}`
-            TABLE += `    ${fieldName} "Pointer (MANY-to-ONE)" [ref: > ${pointerClass}.objectId]
+            TABLE += `    ${fieldName} "Pointer" ${dbmlOptions[fieldName]}
 `;
-            indexes.push(`      ${fieldName} [pk] // NOT pk, just for bold 😎`)
-            indexes.push(`      ${fieldName} [note: '${fieldType}'] // MANY-to-ONE`)
         });
 
         relationFields.forEach(fieldName => {
-            const fieldType = parseClass[fieldName];
-            const relationClass = fieldType.substring(9, fieldType.length - 1); // Extract `relation<${relationClass}>`
-            TABLE += `    ${fieldName} "Relation (MANY-to-MANY)" [ref: < ${relationClass}.objectId]
+            TABLE += `    ${fieldName} "Relation" ${dbmlOptions[fieldName]}
 `;
-            indexes.push(`      ${fieldName} [pk] // NOT pk, just for bold 😎`)
-            indexes.push(`      ${fieldName} [note: '${fieldType}'] // MANY-to-MANY`)
         });
 
         TABLE += `
@@ -135,7 +161,7 @@ ${indexes.join('\n')}
 }
 
 // CLI
-program.version('0.1.7');
+program.version('0.2.0');
 
 program
     .option('-i --input <input>', 'path to the _SCHEMA.json')
