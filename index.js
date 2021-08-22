@@ -62,7 +62,7 @@ const convert = (schemaJSON, schemaDBML) => {
 
         const metadata = parseClass['_metadata'];
         // console.log(metadata);
-        const fieldsOptions = metadata['fields_options'] || {};
+        const fieldsOptions = metadata && metadata['fields_options'] || {};
 
         const color = colorByIndex(classIndex);
 
@@ -150,11 +150,11 @@ ${indexes.join('\n')}
 
         classIndex += 1;
     });
-    
+
     const dbml = DBML.join('\n\n')
-    
+
     // console.log(dbml);
-    
+
     fs.writeFileSync(schemaDBML, dbml);
 
     console.log('DONE');
